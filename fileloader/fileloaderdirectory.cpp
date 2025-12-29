@@ -63,8 +63,8 @@ QByteArray FileLoaderDirectory::getFile(QString name, QMutex& )
 //    if(m_imageFileList.contains(name)) {
         const QString abso = m_directory.absoluteFilePath(name);
         QFile file(abso);
-        file.open(QIODevice::ReadOnly);
-        bytes = file.readAll();
+        if (file.open(QIODevice::ReadOnly))
+            bytes = file.readAll();
         return bytes;
 //    }
 //    return bytes;

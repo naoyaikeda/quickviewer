@@ -510,10 +510,11 @@ public:
             const QString abso = QDir(m_tempDir->path()).filePath(QString::number(index));
             QFile file(abso);
             qDebug() << "tempExstracted open:" << abso;
-            file.open(QIODevice::ReadOnly);
-            QByteArray bytes = file.readAll();
-            qDebug() << bytes;
-            outStream->write(bytes);
+            if (file.open(QIODevice::ReadOnly)) {
+                QByteArray bytes = file.readAll();
+                qDebug() << bytes;
+                outStream->write(bytes);
+            }
             return true;
         }
         Qt7zStreamWriter oStream(outStream, name);
