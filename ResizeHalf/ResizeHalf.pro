@@ -15,7 +15,8 @@ win32-msvc* {
     QMAKE_CXXFLAGS += /wd4819
 }
 *g++* {
-    QMAKE_CXXFLAGS += -std=c++11
+    CONFIG += c++17
+    QMAKE_CXXFLAGS += -std=c++17
 }
 
 SOURCES += \
