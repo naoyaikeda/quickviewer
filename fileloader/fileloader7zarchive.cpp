@@ -277,8 +277,8 @@ class Qt7zMultiStreamWriter : public QObject, public Qt7zBaseStreamWriter
     Q_OBJECT
 
 private:
-    QList<Qt7zFileInfo>* m_fileInfoList;
     QString m_baseDirPath;
+    QList<Qt7zFileInfo>* m_fileInfoList;
     void finalize()
     {
         if(m_outStream) {
@@ -562,7 +562,6 @@ public:
         m_pArchive->GetItemCount(&numItems);
 
         wprintf(L"%d\n", numItems);
-        size_t pre_total = 0;
         Qt7zMultiStreamWriter multiWriter(m_tempDir->path(), &m_fileInfoList, this);
         m_pArchive->ExtractAll(&multiWriter);
 
