@@ -209,7 +209,7 @@ void TestQt7zPackage::fileInfoList()
         QCOMPARE(fileInfo.size, expFileSizes[i]);
         QCOMPARE(fileInfo.isDir, expIsDirs[i]);
         QCOMPARE(fileInfo.isCrcDefined, expIsCrcDefineds[i]);
-        QCOMPARE(fileInfo.crc, expCrcs[i]);
+        QCOMPARE(qint64(fileInfo.crc), qint64(expCrcs[i]));
     }
 }
 

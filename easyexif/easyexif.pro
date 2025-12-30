@@ -11,7 +11,8 @@ TEMPLATE = lib
 CONFIG += staticlib
 
 *g++* {
-    QMAKE_CXXFLAGS += -std=c++11
+    CONFIG += c++17
+    QMAKE_CXXFLAGS += -std=c++17
 }
 
 SOURCES += \

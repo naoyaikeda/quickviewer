@@ -11,6 +11,9 @@ DEFINES += QV_WITHOUT_OPENGL
 ##   Linux:   "/usr/local"
 DEFINES += QV_PORTABLE
 
+# Enable C++17 for Qt 6
+CONFIG += c++17
+
 !contains(DEFINES, QV_PORTABLE) {
     QV_BIN_PATH = /usr/local/bin
     QV_LIB_PATH = /usr/local/lib

@@ -277,8 +277,8 @@ class Qt7zMultiStreamWriter : public QObject, public Qt7zBaseStreamWriter
     Q_OBJECT
 
 private:
-    QList<Qt7zFileInfo>* m_fileInfoList;
     QString m_baseDirPath;
+    QList<Qt7zFileInfo>* m_fileInfoList;
     void finalize()
     {
         if(m_outStream) {
@@ -510,10 +510,11 @@ public:
             const QString abso = QDir(m_tempDir->path()).filePath(QString::number(index));
             QFile file(abso);
             qDebug() << "tempExstracted open:" << abso;
-            file.open(QIODevice::ReadOnly);
-            QByteArray bytes = file.readAll();
-            qDebug() << bytes;
-            outStream->write(bytes);
+            if (file.open(QIODevice::ReadOnly)) {
+                QByteArray bytes = file.readAll();
+                qDebug() << bytes;
+                outStream->write(bytes);
+            }
             return true;
         }
         Qt7zStreamWriter oStream(outStream, name);
@@ -561,7 +562,6 @@ public:
         m_pArchive->GetItemCount(&numItems);
 
         wprintf(L"%d\n", numItems);
-        size_t pre_total = 0;
         Qt7zMultiStreamWriter multiWriter(m_tempDir->path(), &m_fileInfoList, this);
         m_pArchive->ExtractAll(&multiWriter);
 

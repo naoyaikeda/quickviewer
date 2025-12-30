@@ -18,7 +18,7 @@ win32-msvc* {
     CONFIG += c++17
     win32: CONFIG += staticlib
     QMAKE_LFLAGS += -Wl,-rpath,../lib
-    QMAKE_CXXFLAGS += -std=c++11
+    QMAKE_CXXFLAGS += -std=c++17
     DEFINES += NTDDI_VERSION=NTDDI_VISTA
 }
 
